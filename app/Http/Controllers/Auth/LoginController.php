@@ -41,6 +41,10 @@ class LoginController extends Controller
 
     public function authenticated(Request $request, $user)
     {
-        dd($user->hasRole('super-admin'));
+        if ($user->hasRole('super-admin')) {
+            return redirect('/admin');
+        }
+
+        return redirect('home');
     }
 }
