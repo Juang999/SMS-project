@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers as Web;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +23,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('role:staff');
 
-Route::get('/admin', [Web\AdminController::class, 'index'])->name('dashboard')->middleware('role:super-admin');
+// ->middleware('role:super-admin');
+
+Route::middleware('role:super-admin')->group( function () {
+    Route::get('/admin', [Web\AdminController::class, 'index'])->name('dashboard');
+});
