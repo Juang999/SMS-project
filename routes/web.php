@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers as Web;
+use App\Http\Controllers\Web as Web;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -21,10 +21,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('role:staff');
-
-// ->middleware('role:super-admin');
-
 Route::middleware('role:super-admin')->group( function () {
-    Route::get('/admin', [Web\AdminController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [Web\AdminController::class, 'index'])->name('dashboard');
+    Route::get('/teacher', [Web\TeacherController::class, 'index'])->name('teacher');
 });
