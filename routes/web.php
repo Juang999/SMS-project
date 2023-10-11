@@ -22,6 +22,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware('role:super-admin')->group( function () {
-    Route::get('/dashboard', [Web\AdminController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [Web\AdminController::class, 'index'])->name('dashboard-admin');
     Route::get('/teacher', [Web\TeacherController::class, 'index'])->name('teacher');
 });

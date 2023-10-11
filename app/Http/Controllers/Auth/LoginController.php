@@ -43,7 +43,7 @@ class LoginController extends Controller
     {
         
         if ($user->hasRole('super-admin')) {
-            return redirect('/admin');
+            return redirect()->route('dashboard-admin');
         }
 
         return redirect('home');
